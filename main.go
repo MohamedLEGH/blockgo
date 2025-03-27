@@ -11,7 +11,7 @@ type Chain = blockchain.Chain
 
 func main() {
 	miner_address := "me"
-	chain := Chain{Difficulty : 1}
+	chain := Chain{Difficulty: 1}
 	chain.CreateGenesisBlock(miner_address)
 	// // tx := Transaction{Timestamp: 0, Sender: "me", Receiver: "him", Value: 10}
 	// block := Block{Index: 0, Previous_hash: "", Timestamp: 0, Miner_address: "me", Tx_list: []Transaction{}}

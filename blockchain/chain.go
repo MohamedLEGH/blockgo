@@ -2,7 +2,7 @@ package blockchain
 
 import (
 	"fmt"
-    "time"
+	"time"
 )
 
 type Chain struct {
