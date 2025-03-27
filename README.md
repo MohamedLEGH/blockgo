@@ -6,6 +6,17 @@
   - Add signature block
   - Verify signature
 
+- Server
+  - Connexions with other nodes through libP2P
+  - Connexions with client through RCP
+  - Commands to create blockchain, add nodes, add transactions
+
+- Client (CLI)
+  - Commands to create blockchain, add nodes, add transactions
+
+- Bonus
+  - Merkle-Tree for transactions and blocks
+
 # DONE:
 - Block struct
   - Add Transaction
