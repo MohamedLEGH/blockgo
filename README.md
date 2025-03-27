@@ -1,9 +1,6 @@
 # TODO:
 
 - Chain struct
-  - Add Transaction
-  - Add block
-  - Mine block
   - Verify chain
 
 - Signature
@@ -15,3 +12,8 @@
 # DONE:
 - Block struct
   - Add Transaction
+
+- Chain struct
+  - Add Transaction
+  - Add block
+  - Mine block
