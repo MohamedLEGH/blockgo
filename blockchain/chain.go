@@ -1,15 +1,15 @@
 package blockchain
 
 import (
-	// "fmt"
-    // "time"
+	"fmt"
+    "time"
 )
 
 type Chain struct {
 	// Timestamp int
 	// Nonce int
 	// Timestamp float32
-	Difficulty int
+	Difficulty int64
 	Block_list []Block
 	Tx_pool    []Transaction
 }
@@ -26,14 +26,19 @@ func (c *Chain) AddBlock(b Block) {
 
 // }
 
-// func (c *Chain) CreateGenesisBlock() {
-// 	index := 0
-// 	timestamp := time.Now()
-// 	previous_hash := ""
-// 	miner_address := "me"
-// 	tx_list := []Transaction{}
-// 	// nonce, hash_val := Mine_block(index, timestamp, previous_hash, miner_address)
-// }
+func (c *Chain) CreateGenesisBlock() {
+	index := 0
+	timestamp := time.Now().Unix()
+	previous_hash := ""
+	miner_address := "me"
+	tx_list := []Transaction{}
+	block := Block{Index: index, Previous_hash: previous_hash, Timestamp: timestamp, Miner_address: miner_address, Tx_list: tx_list}
+	_, _, err := block.Mine(c.Difficulty)
+	if err != nil {
+		fmt.Printf("Error mining block")
+	}
+	c.AddBlock(block)
+}
 
 // func (t Block) String() string {
 // 	return fmt.Sprintf("index=%d, previous hash=%s, nonce=%d, timestamp=%f, miner address=%s, hash value=%s", t.Sender, t.Receiver, t.Value)

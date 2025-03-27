@@ -11,7 +11,7 @@ type Block struct {
 	Index         int
 	Previous_hash string
 	Nonce         int
-	Timestamp     float32
+	Timestamp     int64
 	Miner_address string
 	Hash_val      string
 	Tx_list       []Transaction
@@ -23,7 +23,7 @@ func (b *Block) AddTransaction(t Transaction) {
 
 func (b *Block) Hash(nonce int) string {
 	var buf strings.Builder
-    fmt.Fprintf(&buf, "%d|%s|%f|%s|", 
+    fmt.Fprintf(&buf, "%d|%s|%d|%s|", 
         b.Index, 
         b.Previous_hash, 
         b.Timestamp, 
@@ -40,27 +40,23 @@ func (b *Block) Mine(difficulty int64) (int, string, error) {
 	if err != nil {
 		return 0, "", err
 	}
-	// fmt.Println("Target:", target)
 	nonce := 0
 	hash := b.Hash(nonce)
 	hash_val, ok := new(big.Int).SetString(hash, 16)
     if !ok {
         return 0, "", errors.New("failed to parse hash")
     }
-	// hash > target
-	// fmt.Println("Hash val:", hash_val)
 	for hash_val.Cmp(target) == 1 {  
 		nonce++
 		hash = b.Hash(nonce)
 		hash_val, ok = new(big.Int).SetString(hash, 16)
-		// fmt.Println("Target:", target)
-		// fmt.Println("Hash val:", hash_val)
 		if !ok {
 			return 0, "", errors.New("failed to parse hash")
 		}
 	}
+	hash = "0x"+hash
 	b.Nonce = nonce
-	b.Hash_val = "0x"+hash
+	b.Hash_val = hash
 	return nonce, hash, nil
 }
 
@@ -69,9 +65,6 @@ func GetTarget(difficulty int64) (*big.Int, error) {
 		return nil, errors.New("difficulty must be greater than 0")
 	}
 	difficulty_big := big.NewInt(difficulty)
-
-	// initial_target := "00000000ffff0000000000000000000000000000000000000000000000000000"
-	// initial target of Bitcoin is already a very small number, for test I need a bigger target
 	initial_target := "f0000000ffff0000000000000000000000000000000000000000000000000000"
 	n_initial_target := new(big.Int)
 	n_initial_target, ok := n_initial_target.SetString(initial_target, 16)
