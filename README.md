@@ -1,8 +1,5 @@
 # TODO:
 
-- Chain struct
-  - Verify chain
-
 - Signature
   - Sign message
   - Add signature transaction
@@ -17,3 +14,4 @@
   - Add Transaction
   - Add block
   - Mine block
+  - Verify chain

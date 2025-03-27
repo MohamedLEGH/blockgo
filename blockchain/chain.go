@@ -55,3 +55,12 @@ func (c *Chain) MineNewBlock(miner_address string) {
 	}
 	c.AddBlock(block)
 }
+
+func (c *Chain) VerifyChain() bool {
+	for _, block := range c.Block_list {
+		if !block.VerifyBlock() {
+			return false
+		}
+	}
+	return true
+}
