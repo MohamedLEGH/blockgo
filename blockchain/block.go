@@ -60,6 +60,17 @@ func (b *Block) Mine(difficulty int64) (int, string, error) {
 	return nonce, hash, nil
 }
 
+func (b *Block) VerifyBlock() bool {
+	nonce := b.Nonce
+	hash := b.Hash_val
+	hash_computed := b.Hash(nonce)
+	if hash == hash_computed {
+		return true
+	} else {
+		return false
+	}
+}
+
 func GetTarget(difficulty int64) (*big.Int, error) {
 	if difficulty <= 0 {
 		return nil, errors.New("difficulty must be greater than 0")
