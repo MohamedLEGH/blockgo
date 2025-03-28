@@ -14,8 +14,12 @@
 - Client (CLI)
   - Commands to create blockchain, add nodes, add transactions
 
+- Client (TUI) ?
+
 - Bonus
   - Merkle-Tree for transactions and blocks
+  - Storage in sqlite
+  - Adjust difficulty ?
 
 # DONE:
 - Block struct

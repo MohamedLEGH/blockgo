@@ -46,6 +46,8 @@ func (b *Block) Mine(difficulty int64) (int, string, error) {
 	if !ok {
 		return 0, "", errors.New("failed to parse hash")
 	}
+	// need to compute from nonce=0 to maxval and return
+	// if hash < target
 	for hash_val.Cmp(target) == 1 {
 		nonce++
 		hash = b.Hash(nonce)
@@ -63,7 +65,7 @@ func (b *Block) Mine(difficulty int64) (int, string, error) {
 func (b *Block) VerifyBlock() bool {
 	nonce := b.Nonce
 	hash := b.Hash_val
-	hash_computed := b.Hash(nonce)
+	hash_computed := "0x" + b.Hash(nonce)
 	if hash == hash_computed {
 		return true
 	} else {
