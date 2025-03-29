@@ -69,7 +69,7 @@ func (b *Block) Mine(difficulty int64) (int, string, error) {
 	return nonce, hash, nil
 }
 
-func (b *Block) VerifyBlock() bool {
+func (b *Block) Verify() bool {
 	nonce := b.Nonce
 	hash := b.Hash_val
 	hash_computed := "0x" + b.Hash(nonce)

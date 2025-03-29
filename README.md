@@ -1,7 +1,5 @@
 # TODO:
 
-- Signature
-
 - Server
   - Connexions with other nodes through libP2P
   - Connexions with client through RCP
@@ -16,6 +14,7 @@
   - Merkle-Tree for transactions and blocks
   - Storage in sqlite
   - Adjust difficulty ?
+  - Better error messages
 
 # DONE:
 - Block struct

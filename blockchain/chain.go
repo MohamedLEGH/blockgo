@@ -11,17 +11,13 @@ type Chain struct {
 	Tx_pool    []Transaction
 }
 
-// func Add Block
-// verify block before adding to the chain
-
-// func Mine Block
-// verify transactions before adding to the block
-
 func (c *Chain) AddTransaction(t Transaction) {
+	t.Verify()
 	c.Tx_pool = append(c.Tx_pool, t)
 }
 
 func (c *Chain) AddBlock(b Block) {
+	b.Verify()
 	c.Block_list = append(c.Block_list, b)
 }
 
@@ -67,7 +63,7 @@ func (c *Chain) MineNewBlock(hexKey string) {
 
 func (c *Chain) VerifyChain() bool {
 	for _, block := range c.Block_list {
-		if !block.VerifyBlock() {
+		if !block.Verify() {
 			return false
 		}
 	}

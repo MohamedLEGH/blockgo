@@ -17,7 +17,6 @@ func main() {
 	spew.Dump(chain)
 	tx := Transaction{Sender: address, Receiver: "him", Value: 10}
 	tx.Sign(privKey)
-	tx.Verify()
 	chain.AddTransaction(tx)
 	spew.Dump(chain)
 	chain.MineNewBlock(privKey)
