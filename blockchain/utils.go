@@ -54,6 +54,11 @@ func TapRootAddressFromPublic(hexPubKey string) string {
 	return address.EncodeAddress()
 }
 
+func TapRootAddressFromPrivateKey(hexKey string) string {
+	hexPubKey := PublicFromPrivate(hexKey)
+	return TapRootAddressFromPublic(hexPubKey)
+}
+
 func GenerateAccount() (string, string) {
 	privKey := GeneratePrivateKey()
 	pubKey := PublicFromPrivate(privKey)

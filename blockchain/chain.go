@@ -28,8 +28,9 @@ func (c *Chain) AddBlock(b Block) {
 // func MineBlock(b Block) {
 // }
 
-func (c *Chain) CreateGenesisBlock(miner_address string) {
+func (c *Chain) CreateGenesisBlock(hexKey string) {
 	// need to check that blocklist is empty
+	miner_address := TapRootAddressFromPrivateKey(hexKey)
 	index := 0
 	timestamp := time.Now().Unix()
 	previous_hash := ""
@@ -39,10 +40,12 @@ func (c *Chain) CreateGenesisBlock(miner_address string) {
 	if err != nil {
 		fmt.Printf("Error mining block")
 	}
+	block.Sign(hexKey)
 	c.AddBlock(block)
 }
 
-func (c *Chain) MineNewBlock(miner_address string) {
+func (c *Chain) MineNewBlock(hexKey string) {
+	miner_address := TapRootAddressFromPrivateKey(hexKey)
 	// need to check that block list is not empty
 	last_block := c.Block_list[len(c.Block_list)-1]
 	index := last_block.Index + 1
@@ -58,6 +61,7 @@ func (c *Chain) MineNewBlock(miner_address string) {
 	if err != nil {
 		fmt.Printf("Error mining block")
 	}
+	block.Sign(hexKey)
 	c.AddBlock(block)
 }
 

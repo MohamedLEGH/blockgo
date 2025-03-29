@@ -15,14 +15,14 @@ type Block struct {
 	Miner_address string
 	Hash_val      string
 	Tx_list       []Transaction
-	// Signature string
+	Signature string
 }
 
-// func Sign Block
-
-// func Verify Block
-// need to add verify all transactions
-// need to add verify block signature
+func (b *Block) Sign(hexKey string) {
+	// the message to sign is the hash of the block
+	msg := b.Hash_val
+	b.Signature = SignMessage(hexKey, msg)
+}
 
 func (b *Block) AddTransaction(t Transaction) {
 	b.Tx_list = append(b.Tx_list, t)
@@ -73,11 +73,14 @@ func (b *Block) VerifyBlock() bool {
 	nonce := b.Nonce
 	hash := b.Hash_val
 	hash_computed := "0x" + b.Hash(nonce)
-	if hash == hash_computed {
-		return true
-	} else {
+	if hash != hash_computed {
 		return false
 	}
+	for _, tx := range b.Tx_list {
+		tx.Verify()
+	}
+	VerifySignature(b.Miner_address, b.Hash_val, b.Signature)
+	return true
 }
 
 func GetTarget(difficulty int64) (*big.Int, error) {
