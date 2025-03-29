@@ -11,6 +11,12 @@ type Chain struct {
 	Tx_pool    []Transaction
 }
 
+// func Add Block
+// verify block before adding to the chain
+
+// func Mine Block
+// verify transactions before adding to the block
+
 func (c *Chain) AddTransaction(t Transaction) {
 	c.Tx_pool = append(c.Tx_pool, t)
 }
@@ -20,7 +26,6 @@ func (c *Chain) AddBlock(b Block) {
 }
 
 // func MineBlock(b Block) {
-
 // }
 
 func (c *Chain) CreateGenesisBlock(miner_address string) {

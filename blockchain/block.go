@@ -15,7 +15,14 @@ type Block struct {
 	Miner_address string
 	Hash_val      string
 	Tx_list       []Transaction
+	// Signature string
 }
+
+// func Sign Block
+
+// func Verify Block
+// need to add verify all transactions
+// need to add verify block signature
 
 func (b *Block) AddTransaction(t Transaction) {
 	b.Tx_list = append(b.Tx_list, t)

@@ -1,10 +1,12 @@
 # TODO:
 
 - Signature
-  - Sign message
   - Add signature transaction
   - Add signature block
-  - Verify signature
+  - Verify signature transaction
+  - Verify signature block
+  - Change sender/receiver to Address
+  - Change miner address to Address
 
 - Server
   - Connexions with other nodes through libP2P
@@ -30,3 +32,7 @@
   - Add block
   - Mine block
   - Verify chain
+
+- Signature
+  - Sign message
+  - Verify signature
